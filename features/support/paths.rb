@@ -16,13 +16,13 @@ module NavigationHelpers
     when /^the (RottenPotatoes )?home\s?page$/ then '/movies'
     when /^the home\s?page$/
       movies_path
-    when /^the edit page for "(.*)"$/
-      movie_id = Movie.find_by(title: $1).id
-      edit_movie_path(movie_id)
-    when /^the details page for "(.+)"$/
+    when /^the edit page for "(.*)"$/ then
+      movie= Movie.find_by(title: $1)
+      edit_movie_path(movie.id)
+    when /^the details page for "(.+)"$/ then
       movie = Movie.find_by(title: $1)
-      movie_path(movie)
-    when /^the Similar Movies page for "(.+)"/
+      movie_path(movie.id)
+    when /^the Similar Movies page for "(.+)"/ then 
       search_similar_movies_path($1)
 
     # Add more mappings here.
